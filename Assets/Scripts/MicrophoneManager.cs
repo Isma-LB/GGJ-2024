@@ -14,13 +14,13 @@ public class MicrophoneManager : MonoBehaviour
         MicrophonetToAudioclip();
     }
 
-    private void Update()
+    public float GetRuido()
     {
         float ruido = (GetLoundnessFromMicrophone() * 100);
 
         if (ruido < 0.1f) ruido = 0;
 
-        print(ruido);
+        return ruido;
     }
 
     private void MicrophonetToAudioclip()
