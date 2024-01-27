@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.defaultSolution": "GGJ-2024.sln",
-    "dotnet.preferCSharpExtension": true
+    "cSpell.words": ["Juego", "Juegos"]
 }
