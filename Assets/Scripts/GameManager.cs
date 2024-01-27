@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<string> players = null;
     [SerializeField] List<MiniJuego> miniJuegos = null;
     [SerializeField] CanvasGroup miniGameBG = null;
+    [SerializeField] TextMeshProUGUI instructionText = null;
+    MiniJuego current;
+    IEnumerator currentMiniGame;
  
     public delegate void TimerChanged(float amount);
     public static event TimerChanged OnTimeChanged;
@@ -19,15 +23,19 @@ public class GameManager : MonoBehaviour
 
     static GameManager instance;
 
-    MiniJuego current;
-    IEnumerator currentMiniGame;
     public static void MiniGameSolved() {
-        instance.Solved();
+        if(instance != null){
+            instance.Solved();
+        }
+        else {
+            Debug.Log("GameManager: Minigame solved!");
+        }
     }   
     void Solved(){
         Debug.Log("SOLVED");
         StopCoroutine(currentMiniGame);
-        SceneManager.UnloadSceneAsync(current.name);
+        SceneManager.UnloadSceneAsync(current.SceneName);
+        current.WasPlayed();
         current = null;
     }
     void Awake()
@@ -37,7 +45,14 @@ public class GameManager : MonoBehaviour
     }
     // Free singleton if needed
     void OnDestroy() { if(instance == this) instance = null; }
-    // Start is called before the first frame update
+
+    void Start()
+    {
+        foreach (MiniJuego juego in miniJuegos)
+        {
+            juego.Reset();
+        }
+    }
     void Update()
     {
         if(current == null){
@@ -50,25 +65,27 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator PlayMiniGame(MiniJuego current){
-        yield return ShowInstruction();
+        yield return ShowInstruction(current);
         SceneManager.LoadScene(current.SceneName, LoadSceneMode.Additive);
-        yield return HandleTimer(current.time);
+        yield return HandleTimer(current.MiniGameTime);
         // game over
         OnTimeChanged?.Invoke(0);
         SceneManager.UnloadSceneAsync(current.SceneName);
         Debug.Log("Game Over");
     }
 
-    IEnumerator ShowInstruction()
+    IEnumerator ShowInstruction(MiniJuego current)
     {
+        instructionText.text = current.instructionText;
         miniGameBG.alpha = 0;
         OnMenuStateChange?.Invoke(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(current.instructionTime);
         miniGameBG.alpha = 1;
         OnMenuStateChange?.Invoke(false);
     }
 
     IEnumerator HandleTimer(float startTime){
+        Debug.Log("timer started" + startTime);
         float timer = startTime;
         while(timer > 0){
             timer -= Time.deltaTime;
