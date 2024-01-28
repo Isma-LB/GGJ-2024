@@ -65,14 +65,14 @@ public class Shake : MonoBehaviour
 
     public void ShakeScorpions(Vector3 aceleration)
     {
-        var aux = scorpionPool[puntero].GetComponent<Rigidbody>();
-        aux.constraints &= ~RigidbodyConstraints.FreezePositionX;
-        aux.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        aux.AddForce(aceleration * shakeForce, ForceMode.Impulse );
-        StartCoroutine(DestroyGO(this.puntero));
-        scorpionPool[puntero].GetComponent<Animator>().SetTrigger("isDead");
+        if(puntero < scorpionPool.Count){
+            var aux = scorpionPool[puntero].GetComponent<Rigidbody>();
+            aux.constraints &= ~RigidbodyConstraints.FreezePositionX;
+            aux.constraints &= ~RigidbodyConstraints.FreezePositionY;
+            aux.AddForce(aceleration * shakeForce, ForceMode.Impulse );
+            scorpionPool[puntero].GetComponent<Animator>().SetTrigger("isDead");
+        }
         puntero++;
-        puntero %= scorpionPool.Count;
         isShaking = true;
     }
 
@@ -88,7 +88,7 @@ public class Shake : MonoBehaviour
                 StartCoroutine(shakeCor);
             }
         }
-        if (scorpionPool[poolSize - 1].IsDestroyed())
+        if (puntero >= scorpionPool.Count)
         {
             StopCoroutine(shakeCor);
             StartCoroutine(WinGame());
@@ -103,13 +103,6 @@ public class Shake : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("Is Not Shaking");
         isShaking =false;
-    }
-
-    IEnumerator DestroyGO(int puntero)
-    {
-        yield return new WaitForSeconds(1);
-        Debug.Log("Objeto Destruido");
-        Destroy(scorpionPool[puntero]);
     }
 
     IEnumerator WinGame()
