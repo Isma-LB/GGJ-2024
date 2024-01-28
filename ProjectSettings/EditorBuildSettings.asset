@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IsmaDev.unity
     guid: 5fed675b80500b2e0953d704711e00d3
   - enabled: 0
@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MiniJuego2.unity
     guid: 1143f62b25e742bd19fa75f0d3e0a829
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BlueFeetRotar.unity
     guid: 0d8534183d7e6b14da2baad6bd05f9b9
   - enabled: 1
     path: Assets/Scenes/BlueFeetShake.unity
     guid: bee150a9981f1fc4f9ff36d9a219b7f2
+  - enabled: 1
+    path: Assets/Scenes/BryanDrag.unity
+    guid: 03c9442ab8816d74a93c24746f5e0856
   m_configObjects: {}
