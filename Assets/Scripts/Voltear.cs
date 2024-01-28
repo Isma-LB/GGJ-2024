@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
+using System.Collections;
 
 public class Voltear : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class Voltear : MonoBehaviour
     AudioManager audioManager;
     public bool isGreen;
     public float greenTime;
+
+    [SerializeField]
+    float timeToWin = 1.0f;
+
+    [SerializeField]
+    Animator animator;
 
     private void Start()
     {
@@ -31,10 +38,7 @@ public class Voltear : MonoBehaviour
                 isGreen = true;
                 greenTime += Time.deltaTime;
 
-                if (greenTime > 1f)
-                {
-                GameManager.MiniGameSolved();
-                }
+                    StartCoroutine(WaitToWin());
             }
             else
             {
@@ -46,11 +50,22 @@ public class Voltear : MonoBehaviour
         }
         else
         {
-            GameManager.MiniGameSolved();
+            //GameManager.MiniGameSolved();
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(WaitToWin());
+            }
             image.color = Color.red;
             Debug.Log("El giroscopio no está disponible en este dispositivo.");
         }
     }
 
+    public IEnumerator WaitToWin()
+    {
+        animator.Play("TortugaPie");
+        yield return new WaitForSeconds(timeToWin);
+        GameManager.MiniGameSolved();
+
+    }
 }
 

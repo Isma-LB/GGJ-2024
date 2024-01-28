@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44358593, g: 0.48762155, b: 0.5443229, a: 1}
+  m_IndirectSpecularColor: {r: 0.44358674, g: 0.48762208, b: 0.5443241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -546,9 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26ea4b09f6f7a28aa1c4f8c13e450d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players:
-  - Player 1
-  - Player 2
+  players: {fileID: 0}
   miniJuegos:
   - {fileID: 11400000, guid: 2dece30d0033501f68e6c70ef9cb3f7d, type: 2}
   - {fileID: 11400000, guid: b9cd6fba1215f3050b5ff96911d0768a, type: 2}
@@ -844,7 +842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693545930337684205, guid: 7b7eea612253d43bdbd0e1b82e71f88d, type: 3}
       propertyPath: m_PlaneDistance
-      value: 99
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8693545930337684207, guid: 7b7eea612253d43bdbd0e1b82e71f88d, type: 3}
       propertyPath: m_Alpha
