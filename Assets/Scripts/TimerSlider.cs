@@ -29,5 +29,6 @@ public class TimerSlider : MonoBehaviour
     }
     void HandleMenuStateChanged(bool isOpen){
         canvasAlpha.alpha = isOpen? 0 : 1;
+        AudioEffectManager.Play(isOpen? AudioEffects.end : AudioEffects.start );
     }
 }

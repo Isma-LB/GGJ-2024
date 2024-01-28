@@ -58,65 +58,65 @@ public class AudioEffectManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Play(AudioEffects.clack);
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     Play(AudioEffects.clack);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Play(AudioEffects.click);
-        }
+        // if (Input.GetKeyDown(KeyCode.W))
+        // {
+        //     Play(AudioEffects.click);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Play(AudioEffects.cuenta_regresiva);
-        }
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     Play(AudioEffects.cuenta_regresiva);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Play(AudioEffects.escorpion);
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     Play(AudioEffects.escorpion);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Play(AudioEffects.game_over);
-        }
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     Play(AudioEffects.game_over);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Play(AudioEffects.glup);
-        }
+        // if (Input.GetKeyDown(KeyCode.Y))
+        // {
+        //     Play(AudioEffects.glup);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Play(AudioEffects.metronomo);
-        }
+        // if (Input.GetKeyDown(KeyCode.U))
+        // {
+        //     Play(AudioEffects.metronomo);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Play(AudioEffects.risa_burla);
-        }
+        // if (Input.GetKeyDown(KeyCode.I))
+        // {
+        //     Play(AudioEffects.risa_burla);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Play(AudioEffects.tortuga);
-        }
+        // if (Input.GetKeyDown(KeyCode.O))
+        // {
+        //     Play(AudioEffects.tortuga);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Play(AudioEffects.victoria);
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     Play(AudioEffects.victoria);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Play(AudioEffects.start);
-        }
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Play(AudioEffects.start);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Play(AudioEffects.end);
-        }
+        // if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     Play(AudioEffects.end);
+        // }
     }
 
 

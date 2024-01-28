@@ -151,4 +151,6 @@ MonoBehaviour:
   risa_burla: {fileID: 11400000, guid: 7b74df2eaa1952d4eb180b0e0b9f0043, type: 2}
   tortuga: {fileID: 11400000, guid: 0fe123180685c014793650c563702746, type: 2}
   victoria: {fileID: 11400000, guid: e3cb584b89aed2b46929c91023061fb1, type: 2}
+  start: {fileID: 11400000, guid: 9f5cbdcce3aaf0e4ebb41ce32da43edf, type: 2}
+  end: {fileID: 11400000, guid: 2f797ec14be548b41ab7860f562f7619, type: 2}
   effectsAudioSource: {fileID: 2185429508725161008}
