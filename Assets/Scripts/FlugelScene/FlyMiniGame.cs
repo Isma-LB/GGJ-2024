@@ -32,10 +32,8 @@ public class FlyMiniGame : MonoBehaviour
 
     private void LateUpdate()
     {
-        limitador = Mathf.Lerp(limitador, ruido.GetRuido(), 0.125f ) ;
-        tr.position = Vector3.Lerp(downPos.position, upPos.position, limitador);
-        // tr.position = Vector3.MoveTowards(tr.position, upPos.position, limitador * Time.deltaTime);
-    
+        limitador = Mathf.Lerp(limitador, ruido.GetRuido(), 0.25f ) ;
+        tr.position = Vector3.Lerp(downPos.position, upPos.position, limitador);    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
