@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] List<string> players = null;
+    [SerializeField] PlayersSO players = null;
     [SerializeField] List<MiniJuego> miniJuegos = null;
     
     [SerializeField] InstructionUI instructionUI = null;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             // chose a mini game
             current = GetRandomMiniJuego();
             // choose a player
-            currentPlayer = GetNextPlayer();
+            currentPlayer = players.GetNextPlayer();
             // play minigame scene 
             currentMiniGame = PlayMiniGame(current, currentPlayer);
             StartCoroutine(currentMiniGame);
@@ -96,9 +96,5 @@ public class GameManager : MonoBehaviour
     MiniJuego GetRandomMiniJuego(){
         int index = Random.Range(0, miniJuegos.Count);
         return miniJuegos[index];
-    }
-    string GetNextPlayer(){
-        int index = Random.Range(0, players.Count);
-        return players[index];
     }
 }
