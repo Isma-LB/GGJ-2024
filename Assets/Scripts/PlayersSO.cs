@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayersSO : ScriptableObject
 {
     [SerializeField]
-    List<string> players = new List<string>();
+    public List<string> players = new List<string>();
 
     string lastPlayer;
 
@@ -25,10 +25,13 @@ public class PlayersSO : ScriptableObject
     public string GetNextPlayer()
     {
         string nextPlayer;
-        nextPlayer = players[Random.Range(0, players.Count - 1)];
+        int num = Random.Range(0, players.Count);
+        nextPlayer = players[num];
         if(lastPlayer == nextPlayer)
         {
-            nextPlayer = GetNextPlayer();
+            num++;
+            num = num%players.Count;
+            nextPlayer = players[num];
         }
         return nextPlayer;
     }

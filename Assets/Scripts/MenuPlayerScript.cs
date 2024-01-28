@@ -40,14 +40,17 @@ public class MenuPlayerScript : MonoBehaviour
             GameObject objeto = new GameObject("PlayerName");
             objeto.transform.SetParent(ordenarPadre.transform);
             TMP_Text textoTMP = objeto.AddComponent<TextMeshProUGUI>();
-            textoTMP.text = "- "+playerName;
+            textoTMP.text = "- " + playerName;
             miInputField.text = "";
         }
 
     }
     public void Jugar()
     {
-        Destroy(FindAnyObjectByType<AudioMenus>().gameObject);
-        SceneManager.LoadScene(scena);
+        if (playersSO.players.Count > 0)
+        {
+            Destroy(FindAnyObjectByType<AudioMenus>().gameObject);
+            SceneManager.LoadScene(scena);
+        }
     }
 }

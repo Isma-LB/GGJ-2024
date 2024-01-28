@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static event TimerChanged OnTimeChanged;
     public delegate void MenuStateChange(bool isOpen);
     public static event MenuStateChange OnMenuStateChange;
+    public int lastGame = -1;
 
 
 
@@ -95,6 +96,12 @@ public class GameManager : MonoBehaviour
     }
     MiniJuego GetRandomMiniJuego(){
         int index = Random.Range(0, miniJuegos.Count);
-        return miniJuegos[index];
+        if(lastGame != -1 && index == lastGame)
+        {
+            index++;
+            index = index % miniJuegos.Count;
+        }
+            lastGame = index;
+            return miniJuegos[index];
     }
 }
