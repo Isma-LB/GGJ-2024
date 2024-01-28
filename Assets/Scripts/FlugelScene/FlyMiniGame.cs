@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FlyMiniGame : MonoBehaviour
 {
     public MicrophoneManager ruido;
-    public float Timer;
     public Transform upPos;
     public Transform downPos;
     public float velocity;
+    public int limit;
+    public TextMeshProUGUI text;
 
     private Transform tr;
 
+    private int objectsCollected = 0;
+
     void Start()
     {
+        Contador();
+
         tr = transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Contador()
     {
-        
+        text.text = objectsCollected + " / " + limit;
     }
 
     private void LateUpdate()
@@ -42,11 +47,18 @@ public class FlyMiniGame : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.gameObject.name == "bullet")
+        if (collision.gameObject.name == "Bullet(Clone)")
         {
-            print("perdiste");
+            objectsCollected += 1;
+            Contador();
+            Destroy(collision.gameObject);
+
+            if (objectsCollected == limit)
+            {
+                print("minijuego completado");
+            }
         }
     }
 }
