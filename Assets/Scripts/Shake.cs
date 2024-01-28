@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -18,16 +19,14 @@ public class Shake : MonoBehaviour
     [SerializeField] private float raizRango;
     [SerializeField] private float ultimoTiempo;
     private int puntero;
+    private Camera cam;
 
-    public Image image;
-    public AudioClip audioClip;
-    AudioManager audioManager;
+    private bool isShaking;
 
     private void Start()
     {
         raizRango = Mathf.Pow(rango, 2);
-        audioManager = AudioManager.Instance;
-
+        cam = Camera.main;
         scorpionPool = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
@@ -36,13 +35,16 @@ public class Shake : MonoBehaviour
             scorpionPool.Add(obj);
         }
 
+
         foreach (var s in scorpionPool)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(-8f, 8f), Random.Range(-4.5f, 4.5f), 0f);
+            float randomX = Random.Range(0, Screen.width);
+            float randomY = Random.Range(0, Screen.height);
+            Vector3 worldPos = cam.ScreenToWorldPoint(new Vector3(randomX, randomY, +10));
             GameObject obj = GetPooledObject();
             if (obj != null)
             {
-                obj.transform.position = randomPosition;
+                obj.transform.position = worldPos;
                 obj.SetActive(true);
             }
         }
@@ -62,21 +64,53 @@ public class Shake : MonoBehaviour
 
     public void ShakeScorpions(Vector3 aceleration)
     {
-        scorpionPool[puntero].GetComponent<Rigidbody>().AddForce(aceleration * shakeForce, ForceMode.Impulse );
-        Debug.Log(puntero);
+        var aux = scorpionPool[puntero].GetComponent<Rigidbody>();
+        aux.constraints &= ~RigidbodyConstraints.FreezePositionX;
+        aux.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        aux.AddForce(aceleration * shakeForce, ForceMode.Impulse );
+        StartCoroutine(DestroyGO(this.puntero));
         puntero++;
+        isShaking = true;
     }
 
 
     void Update()
     {
-        if (Input.acceleration.magnitude >= rango && Time.unscaledTime >= ultimoTiempo + minimoIntervalo)
+        if ((Input.acceleration.magnitude >= rango && Time.unscaledTime >= ultimoTiempo + minimoIntervalo)|| Input.GetKey(KeyCode.O))
         {
-            this.ShakeScorpions(Input.acceleration);     
-           ultimoTiempo = Time.unscaledTime;
+           Debug.Log("isShaking");
+           if (!isShaking)
+            {
+                StartCoroutine(shake());
+            }
         }
+        if (scorpionPool[poolSize - 1].IsDestroyed())
+        {
+            StartCoroutine(WinGame());
+        }
+    }
 
-        //p+oner un flag restar Time.deltatime
-        
+    IEnumerator shake()
+    {
+        this.ShakeScorpions(Input.acceleration);
+        Handheld.Vibrate();
+        ultimoTiempo = Time.unscaledTime;
+        yield return new WaitForSeconds(1);
+        Debug.Log("Is Not Shaking");
+        isShaking =false;
+    }
+
+    IEnumerator DestroyGO(int puntero)
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("Objeto Destruido");
+        Destroy(scorpionPool[puntero]);
+    }
+
+    IEnumerator WinGame()
+    {
+        Handheld.Vibrate();
+        yield return new WaitForSeconds(0.5f);
+        GameManager.MiniGameSolved();
     }
 }
