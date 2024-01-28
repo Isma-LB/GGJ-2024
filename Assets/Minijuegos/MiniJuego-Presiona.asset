@@ -15,5 +15,5 @@ MonoBehaviour:
   sceneName: EstebanMiniJuego
   miniGameTime: 16.4
   timeReducer: 0.5
-  instructionText: EstebanMiniJuego
+  instructionText: Aplasta los botones
   instructionTime: 5
