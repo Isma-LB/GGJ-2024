@@ -9,6 +9,7 @@ public class MenuPlayerScript : MonoBehaviour
 {
     [SerializeField]
     GameObject ordenarPadre;
+    [SerializeField] GameObject prefab = null;
 
     [SerializeField]
     TMP_InputField miInputField;
@@ -37,9 +38,8 @@ public class MenuPlayerScript : MonoBehaviour
 
         if (playersSO.InsertarElemento(playerName) && playerName != "")
         {
-            GameObject objeto = new GameObject("PlayerName");
-            objeto.transform.SetParent(ordenarPadre.transform);
-            TMP_Text textoTMP = objeto.AddComponent<TextMeshProUGUI>();
+            GameObject obj = Instantiate(prefab, ordenarPadre.transform);
+            TMP_Text textoTMP = obj.GetComponent<TextMeshProUGUI>();
             textoTMP.text = "- " + playerName;
             miInputField.text = "";
         }

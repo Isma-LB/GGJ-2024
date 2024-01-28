@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ordenarPadre: {fileID: 784574904}
+  prefab: {fileID: 3211399353478273356, guid: 2a0c618ae2a4e4d9a8598c966e371029, type: 3}
   miInputField: {fileID: 1465507190}
   playersSO: {fileID: 11400000, guid: fd32ed36f1bcceb44a01558db091843e, type: 2}
   scena: 2
@@ -661,11 +662,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 10
-  m_ChildAlignment: 4
-  m_Spacing: 15
+  m_ChildAlignment: 0
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
