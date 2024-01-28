@@ -1,46 +1,82 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Shake : MonoBehaviour
 {
-    public TMP_Text textField;
+    // REQUIRED VARIABLES
+    public GameObject scorpion;
+    public int poolSize = 5;
+    public List<GameObject> scorpionPool;
+
+    public float shakeForce = 5;
+    public float rango = 3.6f;
+    public float minimoIntervalo = 0.2f;
+    [SerializeField] private float raizRango;
+    [SerializeField] private float ultimoTiempo;
+    private int puntero;
+
     public Image image;
     public AudioClip audioClip;
     AudioManager audioManager;
 
     private void Start()
     {
-        // Obtener la instancia única del AudioManager
+        raizRango = Mathf.Pow(rango, 2);
         audioManager = AudioManager.Instance;
+
+        scorpionPool = new List<GameObject>();
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(scorpion);
+            obj.SetActive(false);
+            scorpionPool.Add(obj);
+        }
+
+        foreach (var s in scorpionPool)
+        {
+            Vector3 randomPosition = new Vector3(Random.Range(-8f, 8f), Random.Range(-4.5f, 4.5f), 0f);
+            GameObject obj = GetPooledObject();
+            if (obj != null)
+            {
+                obj.transform.position = randomPosition;
+                obj.SetActive(true);
+            }
+        }
     }
 
-    public void ChangeTextValue(string newValue)
+    public GameObject GetPooledObject()
     {
-        textField.text = newValue;
+        for (int i = 0; i < scorpionPool.Count; i++)
+        {
+            if (!scorpionPool[i].activeInHierarchy)
+            {
+                return scorpionPool[i];
+            }
+        }
+        return null;
     }
 
-    // Update is called once per frame
+    public void ShakeScorpions(Vector3 aceleration)
+    {
+        scorpionPool[puntero].GetComponent<Rigidbody>().AddForce(aceleration * shakeForce, ForceMode.Impulse );
+        Debug.Log(puntero);
+        puntero++;
+    }
+
+
     void Update()
     {
-        Vector3 valor = Input.acceleration;
-
-        this.textField.text = valor.ToString();
-
-        // Detectar si el dispositivo está volteado hacia arriba
-        if (valor.y > 0.8f)
+        if (Input.acceleration.magnitude >= rango && Time.unscaledTime >= ultimoTiempo + minimoIntervalo)
         {
-            // Cambiar el color de la imagen a verde
-            image.color = Color.green;
+            this.ShakeScorpions(Input.acceleration);     
+           ultimoTiempo = Time.unscaledTime;
         }
-        // Detectar si el dispositivo está volteado hacia abajo
-        else if (valor.y < -0.8f)
-        {
-            // Cambiar el color de la imagen a azul
-            image.color = Color.blue;
-            audioManager.PlaySound(audioClip);
-        }
+
+        //p+oner un flag restar Time.deltatime
+        
     }
 }
