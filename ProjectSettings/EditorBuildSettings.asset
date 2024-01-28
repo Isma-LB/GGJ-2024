@@ -14,12 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IsmaDev.unity
     guid: 5fed675b80500b2e0953d704711e00d3
-  - enabled: 0
-    path: Assets/Scenes/MiniJuego1.unity
-    guid: c780ed5e9faf49fc197fa0921af0a7d4
-  - enabled: 0
-    path: Assets/Scenes/MiniJuego2.unity
-    guid: 1143f62b25e742bd19fa75f0d3e0a829
   - enabled: 1
     path: Assets/Scenes/MiniJuegoTortuga.unity
     guid: 0d8534183d7e6b14da2baad6bd05f9b9
