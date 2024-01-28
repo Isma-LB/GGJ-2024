@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 1104126565}
   - component: {fileID: 1104126566}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Shaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,13 +424,11 @@ MonoBehaviour:
   scorpion: {fileID: 2039675906690407664, guid: 184d4cc52a354034f8951cc1d327b5e6, type: 3}
   poolSize: 5
   scorpionPool: []
-  shakeForce: 0
-  rango: 0
-  minimoIntervalo: 0
+  shakeForce: 10
+  rango: 10
+  minimoIntervalo: 0.2
   raizRango: 0
   ultimoTiempo: 0
-  image: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 0c1d2392370f1fa469ca9eb0e35c3b71, type: 3}
 --- !u!1 &1657971446
 GameObject:
   m_ObjectHideFlags: 0
