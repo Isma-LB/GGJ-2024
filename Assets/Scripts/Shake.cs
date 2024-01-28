@@ -69,6 +69,7 @@ public class Shake : MonoBehaviour
         aux.constraints &= ~RigidbodyConstraints.FreezePositionY;
         aux.AddForce(aceleration * shakeForce, ForceMode.Impulse );
         StartCoroutine(DestroyGO(this.puntero));
+        scorpionPool[puntero].GetComponent<Animator>().SetTrigger("isDead");
         puntero++;
         isShaking = true;
     }
