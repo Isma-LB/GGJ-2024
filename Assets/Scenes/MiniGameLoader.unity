@@ -634,6 +634,14 @@ PrefabInstance:
       propertyPath: instructionUI
       value: 
       objectReference: {fileID: 1338093980}
+    - target: {fileID: 4835150468231012950, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
+      propertyPath: miniJuegos.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835150468231012950, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
+      propertyPath: miniJuegos.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 35de84430f26ef5429da7502134f78e1, type: 2}
     - target: {fileID: 4835150468231012951, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
       propertyPath: m_RootOrder
       value: 2
