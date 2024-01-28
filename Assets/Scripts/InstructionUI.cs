@@ -5,12 +5,10 @@ using TMPro;
 
 public class InstructionUI : MonoBehaviour
 {
-    [SerializeField] CanvasGroup miniGameBG = null;
     [SerializeField] TextMeshProUGUI instructionText = null;
     [SerializeField] TextMeshProUGUI playerText = null;
     [SerializeField] TextMeshProUGUI countText = null;
     public void Show(string text, string player){
-        miniGameBG.alpha = 0;
         instructionText.text = text;
         playerText.text = player;
         countText.text = "";
@@ -25,8 +23,5 @@ public class InstructionUI : MonoBehaviour
             yield return null;
         }
 
-    }
-    public void Hide(){
-        miniGameBG.alpha = 1;
     }
 }

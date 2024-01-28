@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
         instructionUI.Show(current.instructionText, player);
         OnMenuStateChange?.Invoke(true);
         yield return instructionUI.Count(current.instructionTime);
-        instructionUI.Hide();
         OnMenuStateChange?.Invoke(false);
     }
 
