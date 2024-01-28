@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
     public Button[] allButtons;
     private List<Button> availableButtons = new List<Button>();
     private List<Button> selectedButtons = new List<Button>();
+    private List<Button> clickedButtons = new List<Button>();
 
     void Start()
     {
@@ -47,22 +48,32 @@ public class ButtonManager : MonoBehaviour
         // Log a message when any button is clicked
         Debug.Log("Button Clicked: " + clickedButton.name);
 
+        // Add the clicked button to the list
+        clickedButtons.Add(clickedButton);
+
         // Check if all selected buttons are clicked simultaneously
-        bool allButtonsClicked = true;
-
-        foreach (Button button in selectedButtons)
+        if (clickedButtons.Count == selectedButtons.Count)
         {
-            if (!button.interactable)
+            bool allButtonsClickedSimultaneously = true;
+
+            // Check if all selected buttons are in the clickedButtons list
+            foreach (Button selectedButton in selectedButtons)
             {
-                allButtonsClicked = false;
-                break;
+                if (!clickedButtons.Contains(selectedButton))
+                {
+                    allButtonsClickedSimultaneously = false;
+                    break;
+                }
             }
-        }
 
-        // If all selected buttons are clicked simultaneously, log a message
-        if (allButtonsClicked)
-        {
-            GameManager.MiniGameSolved();
+            if (allButtonsClickedSimultaneously)
+            {
+                Debug.Log("All selected buttons clicked simultaneously!");
+                // Perform your desired action here
+
+                // Clear the clicked buttons list for the next round
+                clickedButtons.Clear();
+            }
         }
     }
 }
