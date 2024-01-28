@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameOverUI : MonoBehaviour
     void Awake()
     {
         gameOverGroup.alpha = 0;
+    }
+
+    public void RestartGame(){
+        SceneManager.LoadScene(0);
     }
     public void GameOver(){
         animatorCabeza.SetBool("GameOver", true);
