@@ -10,6 +10,8 @@ public class FlyMiniGame : MonoBehaviour
     public Transform downPos;
     public float velocity;
     public int limit;
+    float limitador;
+    [SerializeField, Range(1,10)] float maxHeight = 5;
     public TextMeshProUGUI text;
 
     private Transform tr;
@@ -30,21 +32,10 @@ public class FlyMiniGame : MonoBehaviour
 
     private void LateUpdate()
     {
-        float limitador = ruido.GetRuido();
-
-        if(limitador >= 10)
-        {
-            limitador = 10;
-        }
-
-        if (limitador > 0.8f)
-        {
-            tr.position = Vector3.MoveTowards(tr.position, upPos.position, limitador * Time.deltaTime);
-        }
-        else
-        {
-            tr.position = Vector3.MoveTowards(tr.position, downPos.position, velocity * Time.deltaTime);
-        }
+        limitador = Mathf.Lerp(limitador, ruido.GetRuido(), 0.125f ) ;
+        tr.position = Vector3.Lerp(downPos.position, upPos.position, limitador);
+        // tr.position = Vector3.MoveTowards(tr.position, upPos.position, limitador * Time.deltaTime);
+    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,9 +46,9 @@ public class FlyMiniGame : MonoBehaviour
             Contador();
             Destroy(collision.gameObject);
 
-            if (objectsCollected == limit)
+            if (objectsCollected >= limit)
             {
-                print("minijuego completado");
+                GameManager.MiniGameSolved();
             }
         }
     }

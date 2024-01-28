@@ -13,7 +13,7 @@ public class Disparadores : MonoBehaviour
 
     public void ShotBullet()
     {
-        GameObject ap = Instantiate(bullet, transform.position, Quaternion.identity);
+        GameObject ap = Instantiate(bullet, transform.position, Quaternion.identity, transform);
         Destroy(ap, 10);
 
         StartCoroutine(Shot());

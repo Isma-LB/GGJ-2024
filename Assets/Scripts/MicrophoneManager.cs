@@ -16,7 +16,7 @@ public class MicrophoneManager : MonoBehaviour
 
     public float GetRuido()
     {
-        float ruido = (GetLoundnessFromMicrophone() * 100);
+        float ruido = GetLoundnessFromMicrophone() ;
 
         if (ruido < 0.1f) ruido = 0;
 
