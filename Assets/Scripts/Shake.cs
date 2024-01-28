@@ -22,6 +22,7 @@ public class Shake : MonoBehaviour
     private Camera cam;
 
     private bool isShaking;
+    IEnumerator shakeCor;
 
     private void Start()
     {
@@ -71,6 +72,7 @@ public class Shake : MonoBehaviour
         StartCoroutine(DestroyGO(this.puntero));
         scorpionPool[puntero].GetComponent<Animator>().SetTrigger("isDead");
         puntero++;
+        puntero %= scorpionPool.Count;
         isShaking = true;
     }
 
@@ -82,11 +84,13 @@ public class Shake : MonoBehaviour
            Debug.Log("isShaking");
            if (!isShaking)
             {
-                StartCoroutine(shake());
+                shakeCor = shake();
+                StartCoroutine(shakeCor);
             }
         }
         if (scorpionPool[poolSize - 1].IsDestroyed())
         {
+            StopCoroutine(shakeCor);
             StartCoroutine(WinGame());
         }
     }

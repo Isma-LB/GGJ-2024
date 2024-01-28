@@ -29,11 +29,14 @@ public class GameManager : MonoBehaviour
         if(instance != null) instance.Solved(); else Debug.Log("GameManager: Minigame solved!");
     }   
     void Solved(){
-        Debug.Log("SOLVED");
-        StopCoroutine(currentMiniGame);
-        SceneManager.UnloadSceneAsync(current.SceneName);
-        current.WasPlayed();
-        current = null;
+        if(current != null)
+        {
+            Debug.Log("SOLVED");
+            StopCoroutine(currentMiniGame);
+            SceneManager.UnloadSceneAsync(current.SceneName);
+            current.WasPlayed();
+            current = null;
+        }
     }
     void GameOver(){
         OnTimeChanged?.Invoke(0);
