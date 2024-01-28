@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         instructionUI.Show(current.instructionText, player);
         OnMenuStateChange?.Invoke(true);
-        yield return new WaitForSeconds(current.instructionTime);
+        yield return instructionUI.Count(current.instructionTime);
         instructionUI.Hide();
         OnMenuStateChange?.Invoke(false);
     }
