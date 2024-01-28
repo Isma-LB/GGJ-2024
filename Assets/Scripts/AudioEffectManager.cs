@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AudioEffects { clack, click, cuenta_regresiva, escorpion, game_over, glup, metronomo, risa_burla, tortuga, victoria }
+public enum AudioEffects { clack, click, cuenta_regresiva, escorpion, game_over, glup, metronomo, risa_burla, tortuga, victoria, start, end }
 
 public class AudioEffectManager : MonoBehaviour
 {
@@ -18,6 +18,9 @@ public class AudioEffectManager : MonoBehaviour
     [SerializeField] AudioEffect risa_burla = null;
     [SerializeField] AudioEffect tortuga = null;
     [SerializeField] AudioEffect victoria = null;
+    [SerializeField] AudioEffect start = null;
+    [SerializeField] AudioEffect end = null;
+
 
     [Header("Audio Sources")]
     [SerializeField] AudioSource effectsAudioSource = null;
@@ -37,6 +40,8 @@ public class AudioEffectManager : MonoBehaviour
             case AudioEffects.risa_burla: risa_burla.Play(effectsAudioSource); break;
             case AudioEffects.tortuga: tortuga.Play(effectsAudioSource); break;
             case AudioEffects.victoria: victoria.Play(effectsAudioSource); break;
+            case AudioEffects.start: start.Play(effectsAudioSource); break;
+            case AudioEffects.end: end.Play(effectsAudioSource); break;
         }
     }
     // function to make the singelton static
@@ -101,6 +106,16 @@ public class AudioEffectManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             Play(AudioEffects.victoria);
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Play(AudioEffects.start);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Play(AudioEffects.end);
         }
     }
 
