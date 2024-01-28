@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44358593, g: 0.48762155, b: 0.5443229, a: 1}
+  m_IndirectSpecularColor: {r: 0.44358674, g: 0.48762208, b: 0.5443241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,12 +657,16 @@ PrefabInstance:
       objectReference: {fileID: 1338093980}
     - target: {fileID: 4835150468231012950, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
       propertyPath: miniJuegos.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4835150468231012950, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
       propertyPath: miniJuegos.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 35de84430f26ef5429da7502134f78e1, type: 2}
+    - target: {fileID: 4835150468231012950, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
+      propertyPath: miniJuegos.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: af5490f92b04a9e4693b9616f7741aec, type: 2}
     - target: {fileID: 4835150468231012951, guid: bf68d170f55b0fa288ed5a6063f4b7d7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -787,7 +791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 735107396, guid: 7b7eea612253d43bdbd0e1b82e71f88d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 142.99997
+      value: 142.99994
       objectReference: {fileID: 0}
     - target: {fileID: 1897928092, guid: 7b7eea612253d43bdbd0e1b82e71f88d, type: 3}
       propertyPath: animatorCabeza
