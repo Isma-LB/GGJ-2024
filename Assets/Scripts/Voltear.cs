@@ -6,9 +6,6 @@ using System.Collections;
 
 public class Voltear : MonoBehaviour
 {
-    public Image image;
-    public AudioClip audioClip;
-    AudioManager audioManager;
     public bool isGreen;
     public float greenTime;
 
@@ -20,7 +17,6 @@ public class Voltear : MonoBehaviour
 
     private void Start()
     {
-        audioManager = AudioManager.Instance;
         Input.gyro.enabled = true;
     }
 
@@ -34,7 +30,6 @@ public class Voltear : MonoBehaviour
             if ((gyroValue.x >= 355 || gyroValue.x <= 10) && (gyroValue.y >= 170 && gyroValue.y <= 190))
             {
                 Handheld.Vibrate();
-                image.color = Color.green;
                 isGreen = true;
                 greenTime += Time.deltaTime;
 
@@ -44,7 +39,6 @@ public class Voltear : MonoBehaviour
             {
                 isGreen = false;
                 greenTime += 0;
-                image.color = Color.blue;
             }
             Debug.Log("El giroscopio está disponible en este dispositivo.");
         }
@@ -55,7 +49,6 @@ public class Voltear : MonoBehaviour
             {
                 StartCoroutine(WaitToWin());
             }
-            image.color = Color.red;
             Debug.Log("El giroscopio no está disponible en este dispositivo.");
         }
     }
