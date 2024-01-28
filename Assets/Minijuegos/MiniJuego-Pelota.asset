@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7e13214ff4a3b84bb91c39d6e5f4fc, type: 3}
   m_Name: MiniJuego-Pelota
   m_EditorClassIdentifier: 
-  sceneName: BryanDrag
+  sceneName: MiniJuegoPelota
   miniGameTime: 8
   timeReducer: 0.5
-  instructionText: Arrastra el circulo
-  instructionTime: 8
+  instructionText: Arrastra la pelota
+  instructionTime: 5

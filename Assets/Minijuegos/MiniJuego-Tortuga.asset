@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7e13214ff4a3b84bb91c39d6e5f4fc, type: 3}
   m_Name: MiniJuego-Tortuga
   m_EditorClassIdentifier: 
-  sceneName: BlueFeetRotar
+  sceneName: MiniJuegoTortuga
   miniGameTime: 16.4
   timeReducer: 0.5
   instructionText: Rota!!!!
