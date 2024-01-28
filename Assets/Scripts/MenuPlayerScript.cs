@@ -47,6 +47,7 @@ public class MenuPlayerScript : MonoBehaviour
     }
     public void Jugar()
     {
+        Destroy(FindAnyObjectByType<AudioMenus>().gameObject);
         SceneManager.LoadScene(scena);
     }
 }
