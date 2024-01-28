@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         OnTimeChanged?.Invoke(0);
         SceneManager.UnloadSceneAsync(current.SceneName);
         Debug.Log("Game Over");
+        GameOverUI gameOverUI = FindObjectOfType<GameOverUI>();
+        gameOverUI.GameOver();
     }
     void Awake()
     {
