@@ -70,7 +70,7 @@ public class ButtonManager : MonoBehaviour
             {
                 Debug.Log("All selected buttons clicked simultaneously!");
                 // Perform your desired action here
-
+                GameManager.MiniGameSolved();
                 // Clear the clicked buttons list for the next round
                 clickedButtons.Clear();
             }
