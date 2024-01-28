@@ -962,6 +962,7 @@ GameObject:
   - component: {fileID: 1338093978}
   - component: {fileID: 1338093977}
   - component: {fileID: 1338093976}
+  - component: {fileID: 1338093980}
   m_Layer: 5
   m_Name: InstructionCanvas
   m_TagString: Untagged
@@ -1055,6 +1056,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1338093980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338093975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c97cf19863da2ff182489574118812d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameBG: {fileID: 1551523202}
+  instructionText: {fileID: 833294306}
+  playerText: {fileID: 2113944361}
 --- !u!1 &1551523197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1222,7 @@ MonoBehaviour:
   miniJuegos:
   - {fileID: 11400000, guid: 2dece30d0033501f68e6c70ef9cb3f7d, type: 2}
   - {fileID: 11400000, guid: b9cd6fba1215f3050b5ff96911d0768a, type: 2}
-  miniGameBG: {fileID: 1551523202}
+  instructionUI: {fileID: 1338093980}
 --- !u!4 &1575825193
 Transform:
   m_ObjectHideFlags: 0

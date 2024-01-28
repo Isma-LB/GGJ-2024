@@ -9,9 +9,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] List<string> players = null;
     [SerializeField] List<MiniJuego> miniJuegos = null;
-    [SerializeField] CanvasGroup miniGameBG = null;
-    [SerializeField] TextMeshProUGUI instructionText = null;
+    
+    [SerializeField] InstructionUI instructionUI = null;
     MiniJuego current;
+    string currentPlayer; 
     IEnumerator currentMiniGame;
  
     public delegate void TimerChanged(float amount);
@@ -24,12 +25,7 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
 
     public static void MiniGameSolved() {
-        if(instance != null){
-            instance.Solved();
-        }
-        else {
-            Debug.Log("GameManager: Minigame solved!");
-        }
+        if(instance != null) instance.Solved(); else Debug.Log("GameManager: Minigame solved!");
     }   
     void Solved(){
         Debug.Log("SOLVED");
@@ -37,6 +33,11 @@ public class GameManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(current.SceneName);
         current.WasPlayed();
         current = null;
+    }
+    void GameOver(){
+        OnTimeChanged?.Invoke(0);
+        SceneManager.UnloadSceneAsync(current.SceneName);
+        Debug.Log("Game Over");
     }
     void Awake()
     {
@@ -48,9 +49,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        foreach (MiniJuego juego in miniJuegos)
+        foreach (MiniJuego game in miniJuegos)
         {
-            juego.Reset();
+            game.Reset();
         }
     }
     void Update()
@@ -58,34 +59,32 @@ public class GameManager : MonoBehaviour
         if(current == null){
             // chose a mini game
             current = GetRandomMiniJuego();
+            // choose a player
+            currentPlayer = GetNextPlayer();
             // play minigame scene 
-            currentMiniGame = PlayMiniGame(current);
+            currentMiniGame = PlayMiniGame(current, currentPlayer);
             StartCoroutine(currentMiniGame);
         }
     }
 
-    IEnumerator PlayMiniGame(MiniJuego current){
-        yield return ShowInstruction(current);
-        SceneManager.LoadScene(current.SceneName, LoadSceneMode.Additive);
-        yield return HandleTimer(current.MiniGameTime);
+    IEnumerator PlayMiniGame(MiniJuego game, string player){
+        yield return ShowInstruction(game, player);
+        SceneManager.LoadScene(game.SceneName, LoadSceneMode.Additive);
+        yield return HandleTimer(game.MiniGameTime);
         // game over
-        OnTimeChanged?.Invoke(0);
-        SceneManager.UnloadSceneAsync(current.SceneName);
-        Debug.Log("Game Over");
+        GameOver();
     }
 
-    IEnumerator ShowInstruction(MiniJuego current)
+    IEnumerator ShowInstruction(MiniJuego current, string player)
     {
-        instructionText.text = current.instructionText;
-        miniGameBG.alpha = 0;
+        instructionUI.Show(current.instructionText, player);
         OnMenuStateChange?.Invoke(true);
         yield return new WaitForSeconds(current.instructionTime);
-        miniGameBG.alpha = 1;
+        instructionUI.Hide();
         OnMenuStateChange?.Invoke(false);
     }
 
     IEnumerator HandleTimer(float startTime){
-        Debug.Log("timer started" + startTime);
         float timer = startTime;
         while(timer > 0){
             timer -= Time.deltaTime;
@@ -97,6 +96,8 @@ public class GameManager : MonoBehaviour
         int index = Random.Range(0, miniJuegos.Count);
         return miniJuegos[index];
     }
-
-    
+    string GetNextPlayer(){
+        int index = Random.Range(0, players.Count);
+        return players[index];
+    }
 }
