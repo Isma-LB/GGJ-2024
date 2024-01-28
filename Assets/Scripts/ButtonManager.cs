@@ -7,15 +7,18 @@ public class ButtonManager : MonoBehaviour
     public Button[] allButtons;
     private List<Button> availableButtons = new List<Button>();
     private List<Button> selectedButtons = new List<Button>();
-    private List<Button> clickedButtons = new List<Button>();
+
+
+    int counterTime = 0;
+    int counterToWin = 10;
 
     void Start()
     {
         // Populate the list of available buttons
         availableButtons.AddRange(allButtons);
 
-        // Randomly select three buttons without repetition
-        for (int i = 0; i < 3; i++)
+        // Randomly select one buttons without repetition
+        for (int i = 0; i <1; i++)
         {
             // Ensure there are available buttons to choose from
             if (availableButtons.Count > 0)
@@ -45,35 +48,14 @@ public class ButtonManager : MonoBehaviour
 
     void ButtonClicked(Button clickedButton)
     {
-        // Log a message when any button is clicked
-        Debug.Log("Button Clicked: " + clickedButton.name);
+        counterTime++;
 
-        // Add the clicked button to the list
-        clickedButtons.Add(clickedButton);
+        if (counterTime >= counterToWin)
 
-        // Check if all selected buttons are clicked simultaneously
-        if (clickedButtons.Count == selectedButtons.Count)
         {
-            bool allButtonsClickedSimultaneously = true;
-
-            // Check if all selected buttons are in the clickedButtons list
-            foreach (Button selectedButton in selectedButtons)
-            {
-                if (!clickedButtons.Contains(selectedButton))
-                {
-                    allButtonsClickedSimultaneously = false;
-                    break;
-                }
-            }
-
-            if (allButtonsClickedSimultaneously)
-            {
-                Debug.Log("All selected buttons clicked simultaneously!");
-                // Perform your desired action here
-                GameManager.MiniGameSolved();
-                // Clear the clicked buttons list for the next round
-                clickedButtons.Clear();
-            }
+            GameManager.MiniGameSolved();
+          
         }
+     
     }
 }
